@@ -17,7 +17,7 @@ const handlerLogin = () => {
       password: password.value,
     })
   }
-}
+} 
 </script>
 
 <template>
