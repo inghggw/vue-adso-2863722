@@ -7,9 +7,9 @@ export const authSetStore = defineStore('auth', {
     user: JSON.parse(localStorage.getItem('user') || 'null'), //toDo:Se puede reventar al proteger las rutas por el NULL porque no es un JSON string válido
     token: localStorage.getItem('token') || null,
   }),
-
   actions: {
     login(userData: { email: string, password: string }): boolean{
+      debugger
       const validEmail = 'adso@example.com';
       const validPassword = '1234';
 
