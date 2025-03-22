@@ -9,7 +9,6 @@ export const authSetStore = defineStore('auth', {
   }),
   actions: {
     login(userData: { email: string, password: string }): boolean{
-      debugger
       const validEmail = 'adso@example.com';
       const validPassword = '1234';
 
