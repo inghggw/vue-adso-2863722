@@ -1,4 +1,5 @@
 import router from '@/router';
+import AuthService from '@/services/AuthService';
 import { defineStore } from 'pinia'
 //import { router } from '@/router'
 
@@ -8,21 +9,19 @@ export const authSetStore = defineStore('auth', {
     token: localStorage.getItem('token') || null,
   }),
   actions: {
-    login(userData: { email: string, password: string }): boolean{
-      const validEmail = 'adso@example.com';
-      const validPassword = '1234';
-
-      if (userData.email === validEmail && userData.password === validPassword) {
-        const mockUser = { id: 1, name: 'Usuario Demo', email: userData.email }
-        const mockToken = 'fake-jwt-token'
+    async login(userData: { email: string, password: string }): Promise<boolean>{
+      debugger
+      const auth = new AuthService
+        const login = await auth.login(userData.email, userData.password)
+    
+      if (login.status === 200 && login.token) {
+        const token = login.token
         //Actualizar
-        this.user = mockUser
-        this.token = mockToken
+        this.token = token
 
         //Almacenar
-        localStorage.setItem('user', JSON.stringify(mockUser))
-        localStorage.setItem('token', mockToken)
-
+        localStorage.setItem('token', token)
+ 
         router.push('/dashboard')
         return true
       }

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { authSetStore } from '../services/AuthStore'
+import { authSetStore } from '../stores/AuthStore'
 import { ref } from 'vue'
 
 const authStore = authSetStore()
@@ -11,7 +11,6 @@ const handlerLogin = () => {
     alert('todos los campos son necesarios.')
     return
   } else {
-    console.log(email.value)
     authStore.login({
       email: email.value,
       password: password.value,

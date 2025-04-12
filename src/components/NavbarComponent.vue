@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-    import { authSetStore } from '@/services/AuthStore';
+    import { authSetStore } from '@/stores/AuthStore';
     
     const AuthStore = authSetStore()
     const handlerLogOut = () => {
