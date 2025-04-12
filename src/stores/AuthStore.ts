@@ -13,8 +13,8 @@ export const authSetStore = defineStore('auth', {
       debugger
       const auth = new AuthService
         const login = await auth.login(userData.email, userData.password)
-    
-      if (login.status === 200 && login.token) {
+    debugger
+      if (login.ok && login.token) {
         const token = login.token
         //Actualizar
         this.token = token
