@@ -13,7 +13,7 @@ export const authSetStore = defineStore('auth', {
       
       const auth = new AuthService
         const login = await auth.login(userData.email, userData.password)
-    debugger
+    
       if(login.errors[0]){
         /*login.JSON({"message": "credenciales invalidas"})*/
         alert(login.errors[0].message)
