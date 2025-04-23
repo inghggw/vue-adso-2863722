@@ -8,9 +8,7 @@ export default class AuthService {
             body: JSON.stringify({correo:correo, password:password}),
         })
         debugger
-        if (response.status !== 200) {
-            return false
-        }
+        
         return response.json()
     }
 }
