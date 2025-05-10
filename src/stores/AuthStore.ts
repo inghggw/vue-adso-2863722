@@ -10,11 +10,11 @@ export const authSetStore = defineStore('auth', {
   }),
   actions: {
     async login(userData: { email: string, password: string }): Promise<boolean>{
-      
+
       const auth = new AuthService
         const login = await auth.login(userData.email, userData.password)
-    
-      if(login.errors[0]){
+
+      if(login.errors?.[0]){
         /*login.JSON({"message": "credenciales invalidas"})*/
         alert(login.errors[0].message)
       } else {
@@ -24,13 +24,13 @@ export const authSetStore = defineStore('auth', {
 
         //Almacenar
         localStorage.setItem('token', token)
- 
+
         router.push('/dashboard')
         return true
       }
-      
 
-      
+
+
     },
 
     logout() {
