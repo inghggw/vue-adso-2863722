@@ -5,11 +5,20 @@ import { defineStore } from 'pinia'
 
 export const authSetStore = defineStore('auth', {
   state: () => ({
-    user: JSON.parse(localStorage.getItem('user') || 'null'), //toDo:Se puede reventar al proteger las rutas por el NULL porque no es un JSON string válido
+    user: (() => {
+      try {
+        const userData = localStorage.getItem('user')
+        return userData ? JSON.parse(userData) : null
+      } catch (error) {
+        console.error('Error parsing user from localStorage:', error)
+        return null
+      }
+    })(),
+
     token: localStorage.getItem('token') || null,
   }),
   actions: {
-    async login(userData: { email: string, password: string }): Promise<boolean>{
+    async login(userData: { email: string, password: string }): Promise<boolean | undefined>{
 
       const auth = new AuthService
         const login = await auth.login(userData.email, userData.password)
@@ -28,6 +37,8 @@ export const authSetStore = defineStore('auth', {
         router.push('/dashboard')
         return true
       }
+
+      return false; // Return false if login fails or no return path is reached
 
 
 
